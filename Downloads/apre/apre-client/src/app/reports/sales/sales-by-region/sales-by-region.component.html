@@ -1,0 +1,32 @@
+<div class="p-4">
+    <h2>Sales by Region</h2>
+  
+    <!-- Region dropdown -->
+    <select (change)="onSelect($any($event.target).value)">
+
+      <option *ngFor="let r of regions()" [value]="r">{{ r }}</option>
+    </select>
+  
+    <!-- Toggle button -->
+    <button (click)="toggleView()">Toggle {{ view() === 'chart' ? 'Table' : 'Chart' }}</button>
+  
+    <!-- Chart or Table view -->
+    <ng-container *ngIf="view() === 'chart'; else tableView">
+      <app-chart
+        [title]="'Sales by Salesperson'"
+        [labels]="labels"
+        [data]="data">
+      </app-chart>
+    </ng-container>
+  
+    <ng-template #tableView>
+      <app-table
+        [title]="'Sales by Salesperson'"
+        [headers]="['salesperson', 'total']"
+        [data]="rows()"
+        [sortableColumns]="['salesperson', 'total']"
+        headerBackground="default">
+      </app-table>
+    </ng-template>
+  </div>
+  
