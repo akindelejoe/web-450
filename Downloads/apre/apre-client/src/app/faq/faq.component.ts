@@ -7,41 +7,50 @@ import { Component } from '@angular/core';
   template: `
      <div class="faq">
       <h2 class="faq__title">Frequently Asked Questions</h2>
-      <p class="faq__description">Here are some common questions and answers about the report tool:</p>
+      <p class="faq__description">Below are some common questions about using the Report Tool application.</p>
 
       <div class="faq__cards">
         <div class="card faq__card">
-          <div class="card__header faq__card-header">What is the purpose of the Users Collection?</div>
+          <div class="card__header faq__card-header">What does the Report Tool do?</div>
           <div class="card__body faq__card-body">
-            <p class="faq__card-content">The Users Collection stores information about users, including their username, password hash, email, role, and timestamps for when the user was created and last updated.</p>
+            <p class="faq__card-content">The Report Tool helps users view, analyze, and export key performance and sales data.
+          It provides insights into regional sales trends, agent performance, and customer feedback
+          to support better business decisions.</p>
           </div>
         </div>
 
         <div class="card faq__card">
-          <div class="card__header faq__card-header">How are agents identified in the Agents Collection?</div>
+          <div class="card__header faq__card-header">How do I generate a report</div>
           <div class="card__body faq__card-body">
-            <p class="faq__card-content">Agents are identified by a unique agentId, which is a number between 1000 and 1010. The collection also includes details such as name, email, phone, region, supervisorId, team, and timestamps.</p>
+            <p class="faq__card-content">Navigate to the “Reports” section, select your desired filters (such as date range,
+          region, or product category), and click <strong>Generate Report</strong>. You can then
+          view the report on screen or export it as a PDF or Excel file.</p>
           </div>
         </div>
 
         <div class="card faq__card">
-          <div class="card__header faq__card-header">What kind of data is stored in the Sales Collection?</div>
+          <div class="card__header faq__card-header">Can I export my reports?</div>
           <div class="card__body faq__card-body">
-            <p class="faq__card-content">The Sales Collection stores data related to sales transactions, including the date, region, product, category, customer, salesperson, channel, and the amount of the sale.</p>
+            <p class="faq__card-content">Yes. Reports can be exported in multiple formats, including PDF, CSV, and Excel. Look for
+          the <strong>Export</strong> button at the top-right corner of the report view.</p>
           </div>
         </div>
 
         <div class="card faq__card">
-          <div class="card__header faq__card-header">What metrics are tracked in the Agent Performance Collection?</div>
+          <div class="card__header faq__card-header"></div>
           <div class="card__body faq__card-body">
-            <p class="faq__card-content">The Agent Performance Collection tracks various performance metrics for agents, such as metric type, value, customer feedback, call duration, and resolution time. It also includes the date, region, supervisorId, team, and agentId.</p>
+            <p class="faq__card-content">The system automatically syncs new data every 24 hours. However, administrators can trigger
+          a manual data refresh if needed by using the <strong>Sync Data</strong> option in the
+          admin dashboard.</p>
           </div>
         </div>
 
         <div class="card faq__card">
-          <div class="card__header faq__card-header">What information is captured in the Customer Feedback Collection?</div>
+          <div class="card__header faq__card-header">What should I do if I notice incorrect data?</div>
           <div class="card__body faq__card-body">
-            <p class="faq__card-content">The Customer Feedback Collection captures feedback from customers, including the date, region, product, category, channel, salesperson, customer, rating, agentId, feedback type, performance metrics, sales amount, feedback length, sentiment, text, source, and status.</p>
+            <p class="faq__card-content">If you find incorrect data, go to the <strong>Support</strong> tab and submit a ticket with
+          the report name, date, and details of the issue. The admin team will review and correct it
+          promptly.</p>
           </div>
         </div>
       </div>
