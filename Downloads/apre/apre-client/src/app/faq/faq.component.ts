@@ -37,7 +37,7 @@ import { Component } from '@angular/core';
         </div>
 
         <div class="card faq__card">
-          <div class="card__header faq__card-header"></div>
+          <div class="card__header faq__card-header">How often is the data updated?</div>
           <div class="card__body faq__card-body">
             <p class="faq__card-content">The system automatically syncs new data every 24 hours. However, administrators can trigger
           a manual data refresh if needed by using the <strong>Sync Data</strong> option in the
