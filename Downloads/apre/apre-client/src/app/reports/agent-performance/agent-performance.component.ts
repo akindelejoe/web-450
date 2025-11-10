@@ -5,17 +5,14 @@
  * Description: Agent performance component
  */
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AgentPerformanceByFeedbackComponent } from './agent-performance-by-feedback/agent-performance-by-feedback.component';
 
 @Component({
   selector: 'app-agent-performance',
   standalone: true,
-  imports: [RouterOutlet],
-  template: `
-    <router-outlet />
-  `,
-  styles: ``
+  imports: [CommonModule, AgentPerformanceByFeedbackComponent],
+  templateUrl: './agent-performance.component.html',
+  styleUrls: ['./agent-performance.component.css']
 })
-export class AgentPerformanceComponent {
-
-}
+export class AgentPerformanceComponent {}
