@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChartComponent } from '../../../shared/chart/chart.component'; // ✅ direct import
+import { ChartComponent } from '../../../shared/chart/chart.component'; 
 
 @Component({
   selector: 'app-agent-performance-by-feedback',

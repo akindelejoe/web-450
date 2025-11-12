@@ -3,7 +3,7 @@
   
     <!-- Region dropdown -->
     <select (change)="onSelect($any($event.target).value)">
-
+      <option value="" >Select region</option>
       <option *ngFor="let r of regions()" [value]="r">{{ r }}</option>
     </select>
   
