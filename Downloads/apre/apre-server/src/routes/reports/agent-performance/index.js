@@ -1,30 +1,24 @@
 /**
- * Author: Professor Krasso
- * Date: 8/14/24
- * File: index.js
- * Description: Apre agent performance API for the agent performance reports
+ * @description
+ * GET /performance-by-feedback
+ * Fetches agent performance data grouped by customer feedback (positive, neutral, negative)
+ *
+ * Example:
+ * fetch('/api/reports/agent-performance/performance-by-feedback?startDate=2024-01-01&endDate=2024-01-31')
+ *  .then(response => response.json())
+ *  .then(data => console.log(data));
  */
-
 'use strict';
 
+//required statements
 const express = require('express');
 const { mongo } = require('../../../utils/mongo');
 const createError = require('http-errors');
 
-const router = express.Router();
+//API configuration
+const router = express.Router(); 
 
-/**
- * @description
- *
- * GET /call-duration-by-date-range
- *
- * Fetches call duration data for agents within a specified date range.
- *
- * Example:
- * fetch('/call-duration-by-date-range?startDate=2023-01-01&endDate=2023-01-31')
- *  .then(response => response.json())
- *  .then(data => console.log(data));
- */
+//API call
 router.get('/call-duration-by-date-range', (req, res, next) => {
   try {
     const { startDate, endDate } = req.query;
@@ -33,7 +27,7 @@ router.get('/call-duration-by-date-range', (req, res, next) => {
       return next(createError(400, 'Start date and end date are required'));
     }
 
-    console.log('Fetching call duration report for date range:', startDate, endDate);
+    console.log('Fetching agent performance by feedback:', startDate, endDate);
 
     mongo(async db => {
       const data = await db.collection('agentPerformance').aggregate([
@@ -47,40 +41,24 @@ router.get('/call-duration-by-date-range', (req, res, next) => {
         },
         {
           $lookup: {
-            from: 'agents',
+            from: 'customerFeedback',
             localField: 'agentId',
             foreignField: 'agentId',
-            as: 'agentDetails'
+            as: 'feedbackDetails'
           }
         },
-        {
-          $unwind: '$agentDetails'
-        },
+        { $unwind: '$feedbackDetails' },
         {
           $group: {
-            _id: '$agentDetails.name',
-            totalCallDuration: { $sum: '$callDuration' }
+            _id: '$feedbackDetails.rating',
+            count: { $sum: 1 }
           }
         },
         {
           $project: {
             _id: 0,
-            agent: '$_id',
-            callDuration: '$totalCallDuration'
-          }
-        },
-        {
-          $group: {
-            _id: null,
-            agents: { $push: '$agent' },
-            callDurations: { $push: '$callDuration' }
-          }
-        },
-        {
-          $project: {
-            _id: 0,
-            agents: 1,
-            callDurations: 1
+            feedback: '$_id',
+            count: 1
           }
         }
       ]).toArray();
@@ -88,7 +66,7 @@ router.get('/call-duration-by-date-range', (req, res, next) => {
       res.send(data);
     }, next);
   } catch (err) {
-    console.error('Error in /call-duration-by-date-range', err);
+    console.error('Error in /performance-by-feedback', err);
     next(err);
   }
 });
